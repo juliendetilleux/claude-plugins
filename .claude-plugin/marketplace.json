@@ -1,0 +1,19 @@
+{
+  "name": "claude-plugins",
+  "owner": {
+    "name": "juliendetilleux",
+    "url": "https://github.com/juliendetilleux"
+  },
+  "metadata": {
+    "description": "Marketplace de plugins Claude Code pour PowerBuilder et PMIX"
+  },
+  "plugins": [
+    {
+      "name": "powerbuilder-dev",
+      "source": "juliendetilleux/powerbuilder-dev",
+      "category": "development",
+      "version": "0.2.0",
+      "description": "Plugin pour le développement PowerBuilder 2025 — agents, skills, hooks"
+    }
+  ]
+}
