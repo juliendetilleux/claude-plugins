@@ -1,0 +1,10 @@
+# Toolkit build artifacts
+toolkit/node_modules/
+toolkit/packages/*/node_modules/
+toolkit/packages/*/dist/
+toolkit/data/
+toolkit/.tmp/
+
+# OS
+.DS_Store
+Thumbs.db

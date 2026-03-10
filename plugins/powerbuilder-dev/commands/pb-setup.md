@@ -10,43 +10,44 @@ It handles toolkit installation, project analysis, CLAUDE.md generation, and MCP
 
 ## Step 1: Install PB-Toolkit (if needed)
 
-Check if PB-Toolkit is already installed:
+The toolkit is **bundled with this plugin** in the `toolkit/` directory. No git clone needed.
 
-1. Read `~/.claude/pb-toolkit-path.txt` — if it exists and points to a valid `server.js`, skip to Step 2
-2. Check common locations:
-   - `C:/Program Files/PB-Toolkit/packages/mcp-server/dist/server.js`
-   - `C:/Program Files (x86)/PB-Toolkit/packages/mcp-server/dist/server.js`
-   - `~/Claude/Code/powerbuilder-toolkit/packages/mcp-server/dist/server.js`
-3. If not found anywhere, **install it automatically**:
+### 1a. Locate the toolkit
+
+Find the plugin's toolkit directory. It is at `<plugin-install-dir>/toolkit/` relative to this command file.
+To find it, use the path of this command file (pb-setup.md) and navigate up to the plugin root:
 
 ```bash
-# Clone the toolkit
-git clone https://github.com/juliendetilleux/powerbuilder-toolkit.git "$HOME/Claude/Code/powerbuilder-toolkit"
-cd "$HOME/Claude/Code/powerbuilder-toolkit"
+# The toolkit is at: <plugin-root>/../../toolkit/
+# Example: ~/.claude/plugins/.../pmix-plugins/toolkit/
+```
+
+Alternatively, check these locations in order:
+1. Read `~/.claude/pb-toolkit-path.txt` — if it exists and points to a valid `server.js`, skip to Step 1c
+2. Find `toolkit/packages/mcp-server/dist/server.js` relative to the plugin marketplace root
+3. Check legacy location: `~/Claude/Code/powerbuilder-toolkit/packages/mcp-server/dist/server.js`
+
+### 1b. Build the toolkit (if not already built)
+
+Check if `toolkit/packages/mcp-server/dist/server.js` exists. If not, build it:
+
+```bash
+cd <toolkit-dir>
 
 # Install dependencies
 npm install
-```
 
-4. **Build in the correct order** — the parser must be built BEFORE the mcp-server (workspace dependency):
-
-```bash
-cd "$HOME/Claude/Code/powerbuilder-toolkit"
-
-# Step 1: build the parser first (mcp-server depends on it)
+# Build in the correct order (parser must be built BEFORE mcp-server)
 cd packages/pb-parser && npm run build
-
-# Step 2: then build the mcp-server
 cd ../mcp-server && npm run build
 ```
 
-**If `npm run build` at workspace root fails**, always fall back to this ordered build.
 Verify the build succeeded by checking that `dist/server.js` exists in `packages/mcp-server/`.
 
-5. After install or discovery, save the path:
+### 1c. Save the toolkit path
 
 ```bash
-echo "C:/Users/$USER/Claude/Code/powerbuilder-toolkit/packages/mcp-server/dist/server.js" > ~/.claude/pb-toolkit-path.txt
+echo "<toolkit-dir>/packages/mcp-server/dist/server.js" > ~/.claude/pb-toolkit-path.txt
 ```
 
 **IMPORTANT**: Verify the `server.js` file actually exists at the saved path before proceeding.
@@ -192,12 +193,12 @@ Call `pmix_tables` with filter `"purcontract"` (or any known table).
 4. Ensure all paths in `.mcp.json` use forward slashes and contain no remaining placeholders.
 5. **If only RAG tools fail**: check that `better-sqlite3` native module compiled correctly:
    ```bash
-   cd "$HOME/Claude/Code/powerbuilder-toolkit" && node -e "require('better-sqlite3'); console.log('OK')"
+   cd <toolkit-dir> && node -e "require('better-sqlite3'); console.log('OK')"
    ```
    If this fails, reinstall with: `cd packages/mcp-server && npm rebuild better-sqlite3`
 6. **If tools are registered but RAG returns 0 results**: verify the `docs/` directory exists in the toolkit:
    ```bash
-   ls "$HOME/Claude/Code/powerbuilder-toolkit/docs/"
+   ls <toolkit-dir>/docs/
    ```
    Then force reindex: call `pmix_reindex`.
 
@@ -225,4 +226,4 @@ Then tell the user:
 - `~/.claude/pb-toolkit-path.txt` — toolkit location (shared across all projects)
 - `CLAUDE.md` — project documentation for Claude
 - `.mcp.json` — MCP server configuration
-- PB-Toolkit installed at `~/Claude/Code/powerbuilder-toolkit/` (if not already present)
+- Toolkit built in-place (bundled with plugin — no separate git clone needed)
