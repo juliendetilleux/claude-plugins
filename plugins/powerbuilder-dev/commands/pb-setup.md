@@ -45,6 +45,7 @@ Use MCP tools to analyze the PowerBuilder project:
 2. `pb_get_inheritance` on key ancestor objects (w_response, w_main, etc.)
 3. Sample object names across the project to detect naming conventions
 4. Read the `.pbproj` file for build configuration
+5. Detect the PowerBuilder version from the `.pbproj` file — look for `MajorVersion` and `MinorVersion` elements or the `pbVersion` attribute. Common versions: 2019R3 (19.2), 2022 (22.0), 2025 (25.0).
 
 If MCP tools are not yet available (first run before .mcp.json exists), read the `.pbproj` file directly and scan for `.pbl` directories to gather basic info.
 
@@ -64,7 +65,7 @@ Write a comprehensive CLAUDE.md at the project root with these sections:
 
 ### PMIX-specific sections (if PMIX project):
 
-Detect PMIX by checking for libraries: `_sysxtra`, `Cust_Empty`, `_sales`, `_masters`.
+Detect PMIX by checking for libraries. A project is PMIX if it contains at least 2 of these libraries: `_sysxtra`, `Cust_Empty`, `_sales`, `_masters`, `_stock`, `_manufacturing`.
 If PMIX, add these additional sections:
 
 ```markdown
@@ -145,6 +146,17 @@ Detect the project layout:
 ```
 
 All paths must use **forward slashes**. Replace all placeholders with actual absolute paths.
+
+## Step 4b: Verify MCP connection
+
+After generating `.mcp.json`, attempt to verify the MCP server is reachable by calling `pb_get_project_structure`.
+
+- **If it succeeds**: Inform the user — "MCP connecte avec succes" — and continue to Step 5.
+- **If it fails**: Provide the following diagnostics before continuing:
+  1. Check that `node` is installed and accessible (`node --version`).
+  2. Verify that the `server.js` path stored in `~/.claude/pb-toolkit-path.txt` actually exists on disk.
+  3. Check whether the MCP server process started correctly (look for startup errors in the MCP log).
+  4. Ensure all paths in `.mcp.json` use forward slashes and contain no remaining placeholders.
 
 ## Step 5: Final instructions
 
