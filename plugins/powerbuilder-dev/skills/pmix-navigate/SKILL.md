@@ -1,9 +1,12 @@
 ---
 name: pmix-navigate
-description: Use when answering any question about PMIX ERP — routes to the right knowledge file and provides accurate answers with references. Activates for any question about PmiGest, PMIX business processes, tables, windows, or ERP functionality.
+description: Use when answering any question about PMIX ERP — routes to the right knowledge file and provides accurate answers with references. Activates for any question about PmiGest, PMIX business processes, tables, windows, or ERP functionality. For deep research with full report, use the pmix-researcher agent instead.
 ---
 
 # PMIX Navigation — Repondre aux questions PMIX
+
+> **Skill integre** — Reponse rapide via RAG dans la conversation.
+> Pour une recherche approfondie multi-sources avec rapport, lancer l'agent `pmix-researcher`.
 
 ## Trigger
 
