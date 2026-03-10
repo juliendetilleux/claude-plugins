@@ -1,6 +1,6 @@
 ---
 name: pmix-onboard
-description: Use when opening a new PMIX client project for the first time. Automatically triggered when .pmix-client.json does not exist at the project root. Scans custom libraries, identifies the client, indexes custom code, and generates a project summary.
+description: Use when opening a new PMIX client project for the first time. Automatically triggered when .pmix-client.json does not exist at the project root and the project contains PMIX libraries (_sysxtra, Cust_Empty). Scans custom libraries, identifies the client, indexes custom code, and generates a project summary.
 ---
 
 # PMIX Onboard — Initialisation d'un nouveau projet client
