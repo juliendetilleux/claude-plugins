@@ -1,9 +1,12 @@
 ---
 name: pmix-impact
-description: Use when analyzing the business impact of modifying a PMIX object, table, or process. Activates for questions like "si je modifie X", "quel impact de changer Y", "quels flux sont touches par Z".
+description: Use when analyzing the business impact of modifying a PMIX object, table, or process. Activates for questions like "si je modifie X", "quel impact de changer Y", "quels flux sont touches par Z". For full dependency tree analysis, use the pb-impact-checker agent instead.
 ---
 
 # PMIX Impact — Analyse d'impact des modifications
+
+> **Skill integre** — Estimation rapide d'impact dans la conversation.
+> Pour une analyse complete de l'arbre de dependances, lancer l'agent `pb-impact-checker`.
 
 ## Trigger
 
