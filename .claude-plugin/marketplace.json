@@ -1,19 +1,21 @@
 {
-  "name": "claude-plugins",
+  "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
+  "name": "pmix-plugins",
+  "description": "Marketplace de plugins Claude Code pour PowerBuilder et PMIX",
   "owner": {
     "name": "juliendetilleux",
     "url": "https://github.com/juliendetilleux"
   },
-  "metadata": {
-    "description": "Marketplace de plugins Claude Code pour PowerBuilder et PMIX"
-  },
   "plugins": [
     {
       "name": "powerbuilder-dev",
-      "source": "juliendetilleux/powerbuilder-dev",
-      "category": "development",
+      "description": "Plugin pour le developpement PowerBuilder 2025 — agents, skills, hooks",
       "version": "0.2.1",
-      "description": "Plugin pour le développement PowerBuilder 2025 — agents, skills, hooks"
+      "author": {
+        "name": "juliendetilleux"
+      },
+      "source": "./plugins/powerbuilder-dev",
+      "category": "development"
     }
   ]
 }
