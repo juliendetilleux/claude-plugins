@@ -1,9 +1,12 @@
 ---
 name: pmix-flux
-description: Use when documenting or explaining any PMIX business process, workflow, or data flow. Activates for questions like "comment faire X dans PMIX", "quel est le processus de Y", "decris le flux Z".
+description: Use when documenting or explaining any PMIX business process, workflow, or data flow. Activates for questions like "comment faire X dans PMIX", "quel est le processus de Y", "decris le flux Z". For deep research with cross-referencing, use the pmix-researcher agent instead.
 ---
 
 # PMIX Flux — Documentation des processus metier
+
+> **Skill integre** — Documente les processus metier dans la conversation.
+> Pour une recherche approfondie multi-sources, lancer l'agent `pmix-researcher`.
 
 ## Trigger
 
